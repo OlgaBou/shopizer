@@ -72,7 +72,7 @@ public class PremierTest {
 		PagePanier pagePanier = new PagePanier(driver);
 
 		LOGGER.info("******* ETAPE 1 : Overture de l'application ******");
-		driver.get("http://192.168.1.17:8080/shop");
+		driver.get("http://alexismarjollet.ddns.net:8080/shop");
 
 		LOGGER.info("******* ETAPE 2 : Ajout de produit ******");
 		accueilPage.ajouterAuPanier();
