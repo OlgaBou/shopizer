@@ -7,6 +7,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByXPath;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -88,7 +90,7 @@ public class PremierTest {
 		LOGGER.info("******* ETAPE 9 : Verification de la presence d'un nom ******");
 		assertTrue(pagePanier.verifyNameisDisplayed());
 
-		LOGGER.info("******* ETAPE 10 : Verification de la presence de la quantit� ******");
+		LOGGER.info("******* ETAPE 10 : Verification de la presence de la quantite ******");
 		pagePanier.verifyQuantity();
 
 		LOGGER.info("******* ETAPE 11 : Verification de la presence du prix par article ******");
@@ -100,7 +102,7 @@ public class PremierTest {
 		LOGGER.info("******* ETAPE 13 : Recuperation du total de la section en String ******");
 		String priceTotalArticle_un = pagePanier.priceTotalArticle.getText().substring(3);
 
-		LOGGER.info("******* ETAPE 14 : Verification de la pr�sence du total ******");
+		LOGGER.info("******* ETAPE 14 : Verification de la presence du total ******");
 		assertTrue(pagePanier.verifypricePriceTotaisDisplayed());
 
 		LOGGER.info("******* ETAPE 15 : Recuperation du total  ******");
@@ -126,6 +128,7 @@ public class PremierTest {
 
 		LOGGER.info("******* ETAPE 18 : Verification du doublement de la quantite ******");
 		numberProductInt = Integer.parseInt(numberProductString);
+		
 		String total_section_deux = pageRecalculate.priceTotalArticle.getText().substring(3);
 		double prix_article_double = Double.parseDouble(priceTotalArticle_un);
 		double total_section_double = Double.parseDouble(total_section_deux);
@@ -144,6 +147,9 @@ public class PremierTest {
 
 		LOGGER.info("******* ETAPE 19 : Payment ******");
 		pageRecalculate.effectuerPayment();
+		
+		LOGGER.info("******* ETAPE 20 : La page du paiement est affichee ******");
+		assertTrue("La page paiement n'est pas affichee", PagePayment.verifyPaiementisDisplayed());
 
 	}
 
