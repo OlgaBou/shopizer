@@ -29,10 +29,14 @@ public class PremierTest {
 	@Before
 	/*public void setUp() {
 	
-	 * System.setProperty("webdriver.chrome.driver",
-	 * "src/main/resources/driver/chromedriver.exe"); driver = new ChromeDriver();
-	 * driver.manage().window().maximize(); }
-	 */
+	 System.setProperty("webdriver.chrome.driver",
+	 "src/main/resources/driver/chromedriver.exe"); driver = new ChromeDriver();
+	 driver.manage().window().maximize(); }*/
+	
+		/*System.setProperty("webdriver.ie.driver",
+	 "src/main/resources/driver/IEDriverServer.exe"); driver = new InternetExplorerDriver();
+	 driver.manage().window().maximize(); }*/
+	
 
 	public void setup() throws Exception {
 		String browser = System.getProperty("Navigateur"); // String browser = "";
@@ -46,9 +50,10 @@ public class PremierTest {
 			driver = new ChromeDriver();
 		}
 
-		else if (browser.equalsIgnoreCase("IE")) {
-			System.setProperty("webdriver.ie.driver", "src/main/resources/driver/IEDriverServer.exe");
-			WebDriver driver = new InternetExplorerDriver();
+		else if(browser.equalsIgnoreCase("edge")){
+					System.setProperty("webdriver.edge.driver","src/main/resources/driver/msedgedriver.exe");
+					driver = new EdgeDriver();
+				
 		} else {
 			System.setProperty("webdriver.chrome.driver", "src/main/resources/driver/chromedriver.exe");
 			driver = new ChromeDriver();
