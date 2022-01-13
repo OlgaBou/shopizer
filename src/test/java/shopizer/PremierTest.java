@@ -27,32 +27,36 @@ public class PremierTest {
 	WebDriverWait wait;
 
 	@Before
-	public void setUp() {
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/driver/chromedriver.exe");
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-	}
-
-	/*
-	 * public void setup() throws Exception{ String browser =
-	 * System.getProperty("toto"); //String browser = "";
-	 * if(browser.equalsIgnoreCase("firefox")){
-	 * System.setProperty("webdriver.gecko.driver",
-	 * "src/main/resources/driver/geckodriver.exe"); driver = new FirefoxDriver(); }
-	 * 
-	 * else if(browser.equalsIgnoreCase("chrome")){
+	/*public void setUp() {
+	
 	 * System.setProperty("webdriver.chrome.driver",
-	 * "src/main/resources/driver/chromedriver.exe"); driver = new ChromeDriver(); }
-	 * 
-	 * else if(browser.equalsIgnoreCase("IE")){
-	 * System.setProperty("webdriver.ie.driver",
-	 * "src/main/resources/driver/IEDriverServer.exe"); WebDriver driver = new
-	 * InternetExplorerDriver(); } else{
-	 * System.setProperty("webdriver.chrome.driver",
-	 * "src/main/resources/driver/chromedriver.exe"); driver = new ChromeDriver(); }
-	 * 
+	 * "src/main/resources/driver/chromedriver.exe"); driver = new ChromeDriver();
 	 * driver.manage().window().maximize(); }
 	 */
+
+	public void setup() throws Exception {
+		String browser = System.getProperty("Navigateur"); // String browser = "";
+		if (browser.equalsIgnoreCase("firefox")) {
+			System.setProperty("webdriver.gecko.driver", "src/main/resources/driver/geckodriver.exe");
+			driver = new FirefoxDriver();
+		}
+
+		else if (browser.equalsIgnoreCase("chrome")) {
+			System.setProperty("webdriver.chrome.driver", "src/main/resources/driver/chromedriver.exe");
+			driver = new ChromeDriver();
+		}
+
+		else if (browser.equalsIgnoreCase("IE")) {
+			System.setProperty("webdriver.ie.driver", "src/main/resources/driver/IEDriverServer.exe");
+			WebDriver driver = new InternetExplorerDriver();
+		} else {
+			System.setProperty("webdriver.chrome.driver", "src/main/resources/driver/chromedriver.exe");
+			driver = new ChromeDriver();
+		}
+
+		driver.manage().window().maximize();
+	}
+	
 
 	@Test
 	public void run() throws InterruptedException {
@@ -128,7 +132,7 @@ public class PremierTest {
 
 		LOGGER.info("******* ETAPE 18 : Verification du doublement de la quantite ******");
 		numberProductInt = Integer.parseInt(numberProductString);
-		
+
 		String total_section_deux = pageRecalculate.priceTotalArticle.getText().substring(3);
 		double prix_article_double = Double.parseDouble(priceTotalArticle_un);
 		double total_section_double = Double.parseDouble(total_section_deux);
@@ -147,7 +151,7 @@ public class PremierTest {
 
 		LOGGER.info("******* ETAPE 19 : Payment ******");
 		pageRecalculate.effectuerPayment();
-		
+
 		LOGGER.info("******* ETAPE 20 : La page du paiement est affichee ******");
 		assertTrue("La page paiement n'est pas affichee", PagePayment.verifyPaiementisDisplayed());
 
